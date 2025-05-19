@@ -1,5 +1,6 @@
 import hashlib
 import argparse
+import itertools
 
 #--------------------------
 # Terminal command line
@@ -9,7 +10,7 @@ def parse_args():
     
     # Required inputs
     parser.add_argument("--target", help="Target hash to crack", required=True) # Input 1: target hash you would like to crack
-    parser.add_argument("--algorithm", help="Hash algorithm (e.g. sha256)", required=True) # Input 2: Type of hash algorithm being usied
+    parser.add_argument("--algorithm", help="Hash algorithm (e.g. sha256)", required=True) # Input 2: Type of hash algorithm being used
     
     # Mutually exclusive: wordlist OR PIN generation
     group = parser.add_mutually_exclusive_group(required=True)
@@ -30,23 +31,7 @@ def parse_args():
 def generate_pin_wordlist(length: int):
     # Generates all numeric combinations for a given digit length
     return (''.join(p) for p in itertools.product('0123456789', repeat=length))
-
-def four_digits():
-    return generate_pin_wordlist(4)
-
-def five_digits():
-    return generate_pin_wordlist(5)
-
-def six_digits():
-    return generate_pin_wordlist(6)
-
-def crack_PIN(target_hash: str, algorithm: str, PIN_iter):
-    for PIN in PIN_iter:
-        hashed = hashlib.new(algorithm, password.encode()).hexdigest()
-        if hashed == target_hash:
-            return password
-    return None
-
+    
 #--------------------------
 # Password Functions
 #--------------------------
@@ -62,7 +47,7 @@ def crack_password(target_hash: str, algorithm: str, password_iter):
 # Main Execution
 #--------------------------
 def main():
-    args = parse_arguments()
+    args = parse_args()
     
     # Get password iterator (file or generated PINs)
     if args.wordlist:
