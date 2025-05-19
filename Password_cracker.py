@@ -8,18 +8,16 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Password/PIN Cracker") # Initializes Parser object
     
     # Required inputs
-    parser.add_argument("--target", help="Target hash to crack", required=True) # Input 1: target hash you would like to crach
-    parser.add_argument("--algorithm", help="Hash algorithm (e.g. sha256)", required=True) # Input 2: Type of hash algorithm you're using
-
+    parser.add_argument("--target", help="Target hash to crack", required=True) # Input 1: target hash you would like to crack
+    parser.add_argument("--algorithm", help="Hash algorithm (e.g. sha256)", required=True) # Input 2: Type of hash algorithm being usied
+    
     # Mutually exclusive: wordlist OR PIN generation
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--pin-length", type=int, choices=[4,5,6], 
                     help="Generate PIN combinations (4, 5, or 6 digits)")
-    
     #-----------------------------------------------------------
     # Dev Note: I recommend using the rockyou.txt list. This list can be obtained using the following terminal command:
     # $ wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
-    # Note that this file has 14 million entries, so it's hefty.
     #-----------------------------------------------------------
     group.add_argument("--wordlist", help="Path to wordlist file") 
     
@@ -88,37 +86,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-#--------------------------
-# User Input Tree
-#--------------------------
-
-print("What would you like to crack?")
-print("[1] - 4 to 6 digit PIN")
-print("[2] - Password")
-choice = input().strip()
-if  choice == "1":
-    print("You have selected PIN mode. Please input the length of the PIN")
-    print("[1] - 4 digits")
-    print("[2] - 5 digits")
-    print("[3] - 6 digits")
-    pinCount = input().strip()
-    if pinCount == "1":
-        print("You have selected 4 digits")
-        # four_digits()
-    elif pinCount == "2":
-        print("You have selected 5 digits")
-        # five_digits()
-    elif pinCount == "3":
-        print("You have selected 6 digits")
-        # six_digits()
-    else:
-        print("Invalid input. Please select 1, 2, or 3.")
-    break
-elif choice == "2":
-    print("You have selected Password mode")
-    password()
-    break
-else:
-    print("Invalid input. Please select 1 or 2.")
-
