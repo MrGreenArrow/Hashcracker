@@ -14,7 +14,7 @@ def parse_args():
     
     # Mutually exclusive: wordlist OR PIN generation
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("-p", "--pin-length", type=int, choices=[4,5,6], 
+    group.add_argument("-pl", "--pin-length", type=int, choices=[4,5,6], 
                     help="Generate PIN combinations (4, 5, or 6 digits)")
     #-----------------------------------------------------------
     # Dev Note: I recommend using the rockyou.txt list. This list can be obtained using the following terminal command:
