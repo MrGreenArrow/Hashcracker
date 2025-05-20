@@ -38,30 +38,33 @@ The main goal of this project is to provide a quick and easy way to break hashes
 
 ### Installation
 1. Clone the repository
-
-  ```shell
-  git clone https://github.com/MrGreenArrow/Password-Cracker/
-  ```
-
+   ```shell
+   git clone https://github.com/MrGreenArrow/Password-Cracker/
+   ```
 2. Navigate to project directory
-
    ```shell
    cd Password-Cracker
    ```
-   
 3. Install any required Python packages
-
    ```shell
    pip install -r requirements
    ```
-
+   
 ## Usage:
-The basic command is given by
+There are two fundamental commands, with similar syntax. The first is for when you have a hash and are trying to compare the hash to a list of possible words. If you're looking, I recommend rockyou.txt (https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt). The command is given by 
 ```bash
-python hashcracker.py --target <target hash> --algorithm <hash algorithm> (--wordlist <path to wordlist> or --pin-length <PIN length (4, 5, or 6 digits)>) 
+python hashcracker.py --target <target hash> --algorithm <hash algorithm> --wordlist <path to wordlist>
 ```
-This can also be shortened to
+This can be shortened to
 ```bash
-python hashcracker.py -t <target hash> -a <hash algorithm> (-w <path to wordlist> or -pl <PIN length (4, 5, or 6 digits)>)
+python hashcracker.py -t <target hash> -a <hash algorithm> -w <path to wordlist>
+```
+Alternatively, you can have the program run through a list of PINs to find the correct PIN of some specified size.
+```bash
+python hashcracker.py --target <target hash> --algorithm <hash algorithm> --pin-length <PIN length - 4, 5, or 6>
+```
+This can also be shortened.
+```bash
+python hashcracker.py -t <target hash> -a <hash algorithm> -pl <PIN length - 4, 5, or 6>
 ```
 
