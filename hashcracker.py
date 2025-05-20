@@ -9,18 +9,18 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Password/PIN Cracker") # Initializes Parser object
     
     # Required inputs
-    parser.add_argument("--target", help="Target hash to crack", required=True) # Input 1: target hash you would like to crack
-    parser.add_argument("--algorithm", help="Hash algorithm (e.g. sha256)", required=True) # Input 2: Type of hash algorithm being used
+    parser.add_argument("-t", "--target", help="Target hash to crack", required=True) # Input 1: target hash you would like to crack
+    parser.add_argument("-a", "--algorithm", help="Hash algorithm (e.g. sha256)", required=True) # Input 2: Type of hash algorithm being used
     
     # Mutually exclusive: wordlist OR PIN generation
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--pin-length", type=int, choices=[4,5,6], 
+    group.add_argument("-p", "--pin-length", type=int, choices=[4,5,6], 
                     help="Generate PIN combinations (4, 5, or 6 digits)")
     #-----------------------------------------------------------
     # Dev Note: I recommend using the rockyou.txt list. This list can be obtained using the following terminal command:
     # $ wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
     #-----------------------------------------------------------
-    group.add_argument("--wordlist", help="Path to wordlist file") 
+    group.add_argument("-w", "--wordlist", help="Path to wordlist file") 
     
     return parser.parse_args()
 
