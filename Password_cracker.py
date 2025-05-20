@@ -53,7 +53,7 @@ def main():
     if args.wordlist:
         try:
             with open(args.wordlist, "r", encoding="utf-8") as f:
-                password_iter = (line.strip() for line in f)
+                password_iter = [line.strip() for line in f]
         except FileNotFoundError:
             print(f"Error: Wordlist '{args.wordlist}' not found")
             return
